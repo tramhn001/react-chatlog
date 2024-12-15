@@ -15,7 +15,7 @@ const App = () => {
 
   const totalLikes = chatMessages.filter((message) => message.liked).length;
 
-  const sender1 = messages[0].sender   // First sender
+  const sender1 = messages[0].sender // First sender
   const sender2 = messages[1].sender // Second sender
 
   return (
