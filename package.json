@@ -5,13 +5,13 @@
   "homepage": "https://tramhn001.github.io/react-chatlog/",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest --run",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "vitest --run"
   },
   "dependencies": {
     "luxon": "^2.5.2",
