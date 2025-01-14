@@ -7,21 +7,26 @@ const App = () => {
   const [chatMessages, setChatMessages] = useState(messages);
 
   const toggleLike = (id) => {
-    const updatedMessages = chatMessages.map((message) =>
-      message.id === id ? { ...message, liked: !message.liked } : message
-    );
+    const updatedMessages = chatMessages.map((message) => {
+      if (message.id === id) {
+        return {...message, liked: !message.liked };
+      } else {
+        return message;
+      }
+    });
+
     setChatMessages(updatedMessages);
   };
 
   const totalLikes = chatMessages.filter((message) => message.liked).length;
 
-  const sender1 = messages[0].sender // First sender
-  const sender2 = messages[1].sender // Second sender
+  // Extract unique participants
+  const participants = [...new Set(chatMessages.map((message) => message.sender))];
 
   return (
     <div id="App">
       <header>
-        <h1>{`Chat between ${sender1} and ${sender2}`}</h1>
+        <h1>{`Chat between ${participants.join(' and ')}`}</h1>
         <p>{totalLikes} ❤️s</p>
       </header>
       <main>

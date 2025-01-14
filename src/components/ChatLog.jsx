@@ -2,24 +2,25 @@ import ChatEntry from './ChatEntry.jsx';
 import PropTypes from 'prop-types';
 import './ChatLog.css';
 
-const ChatLog = ({ entries, onToggleLike }) => {
+const ChatLog = ({ entries, onToggleLike = () => {} }) => {
 	return (
 		<div className="chat-log">
 			{entries.map((entry) => (
 				<ChatEntry
           key={entry.id}
+          id={entry.id} // Pass the id directly
           sender={entry.sender}
           body={entry.body}
           timeStamp={entry.timeStamp}
           liked={entry.liked}
-          onLikeToggle={() => onToggleLike(entry.id)}
+          onLikeToggle={onToggleLike} // Pass the function directly
 				/>
 			))}
 		</div>
 	);
 };
 
-ChatLog.PropTypes = {
+ChatLog.propTypes = {
   entries: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -29,7 +30,7 @@ ChatLog.PropTypes = {
       liked: PropTypes.bool.isRequired
     })
   ).isRequired,
-  onToggleLike: PropTypes.func.isRequired,
+  onToggleLike: PropTypes.func,
 };
 
 export default ChatLog;

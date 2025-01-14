@@ -3,6 +3,11 @@ import TimeStamp from './TimeStamp';
 import PropTypes from 'prop-types';
 
 const ChatEntry = ({ id, sender, body, timeStamp, liked, onLikeToggle }) => {
+  const handleLikeClick = () => {
+    if (onLikeToggle) {
+      onLikeToggle(id);
+    }
+  }
   return (
     <div className={`chat-entry ${liked ? 'liked' : ''} ${sender === 'Vladimir' ? 'local' : 'remote'}`}>
       <h2 className="entry-name">{sender}</h2>
@@ -27,7 +32,7 @@ ChatEntry.propTypes = {
   body: PropTypes.string.isRequired,
   timeStamp: PropTypes.string.isRequired,
   liked: PropTypes.bool.isRequired,
-  onLikeToggle: PropTypes.func.isRequired,
+  onLikeToggle: PropTypes.func,
 };
 
 export default ChatEntry;
